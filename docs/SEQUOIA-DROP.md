@@ -4,7 +4,7 @@
 
 Another year, another release.
 
-This time Apple dropped surprisingly few amount of Macs. With the release of OpenCore Legacy Patcher 2.0.0, early support for macOS Sequoia has been implemented.
+This time, Apple dropped surprisingly few Mac models. With the release of OpenCore Legacy Patcher 2.0.0, early support for macOS Sequoia has been implemented.
 
 
 ## Newly dropped hardware
@@ -16,7 +16,7 @@ This time Apple dropped surprisingly few amount of Macs. With the release of Ope
 
 OpenCore Legacy Patcher 2.0.0 will support Sequoia for most models normally supported by the Patcher, however some challenges remain. You can find information about them below.
 
-Unfortunately due to T2 related problems, the recently dropped MacBookAir8,x models cannot be supported at this time.
+Unfortunately, due to T2-related problems, the recently dropped MacBookAir8,x models cannot be supported at this time.
 
 [More information here](https://github.com/dortania/OpenCore-Legacy-Patcher/issues/1136)
 
@@ -38,13 +38,13 @@ iPhone Mirroring requires T2 for attestation and Apple Intelligence requires an 
 
 Booting Sequoia on Mac Pro 2008 (MacPro3,1) or Xserve 2008 (Xserve2,1) with more than 4 cores will cause Sequoia to panic. OpenCore Legacy Patcher will automatically disable additional cores.
 
-This is due to the dual socket nature of the machine, and likely some firmware/ACPI table incompatibility. 
+This is due to the dual socket nature of the machine and likely some firmware/ACPI table incompatibility. 
 
-**If building OpenCore for older OS, this limitation can be disabled in Settings -> Build -> "MacPro3,1/Xserve2,1 Workaround".** 
+**If building OpenCore for an older OS, this limitation can be disabled in Settings -> Build -> "MacPro3,1/Xserve2,1 Workaround".** 
 
 ::: warning Note
 
-Dual booting Sequoia and older will not be possible with all cores enabled due to reasons described before. In these cases you will be limited to 4 cores.
+Dual booting Sequoia and older will not be possible with all cores enabled due to the reasons described before. In these cases, you will be limited to 4 cores.
 
 :::
 
@@ -61,7 +61,7 @@ What happens when one of these units boots through OpenCorePkg is that AppleKeyS
 panic(cpu 0 caller 0xffffff801cd12509): "AppleSEPManager panic for "AppleKeyStore": sks request timeout" @AppleSEPManagerIntel.cpp:809
 ```
 
-This affects not only macOS Sequoia, but macOS Ventura and Sonoma are confirmed to have the same issue. Thus an underlying problem with the MacBookAir8,x's firmware where it is not happy with OpenCorePkg.
+This affects not only macOS Sequoia but also macOS Ventura and Sonoma, which are confirmed to have the same issue. Thus, there is an underlying problem with the MacBookAir8,x's firmware, where it is unhappy with OpenCorePkg.
 
 We currently do not have any leads on what exactly breaks the T2.
 * MacBookPro15,2, MacBookPro16,2 and Macmini8,1 do not exhibit these issues in local testing
@@ -80,9 +80,9 @@ While USB 1.1 may seem unimportant, it handles many important devices on your sy
 
 Users will need to use a USB hub for installation and post-OS updates when patches are cleaned:
 
-However, the driver has recently been weakened starting from Sonoma, which means even some USB hubs may not work properly. 
+However, the driver has recently been weakened starting from Sonoma, which means some USB hubs may not work properly. 
 
-An alternative way is making sure to enable "Remote Login" in General -> Sharing before updating, which will enable SSH. 
+An alternative way is to make sure to enable "Remote Login" in General -> Sharing before updating, which will enable SSH. 
 That means you can take control using Terminal in another system by typing `ssh username@lan-ip-address` and your password. 
 
 After that run Post Install Volume Patching by typing `/Applications/OpenCore-Patcher.app/Contents/MacOS/OpenCore-Patcher --patch_sys_vol` and finally `sudo reboot`.
